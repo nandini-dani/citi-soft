@@ -1,6 +1,11 @@
-<nav class="navbar bg-light">
+<nav class="navbar bg-light p-0">
   <div class="container-fluid justify-content-end">
-    <a class="navbar-brand text-dark" href="#">Home</a>
+    {% comment %}
+    <a class="navbar-brand" href="#">
+      <img src="../images/logo.jpeg" width="30" height="24" />
+    </a>
+    {% endcomment %}
+    <a class="navbar-brand text-dark" href="#">Home</a> 
     <a class="navbar-brand text-dark" href="#">Companies</a>
 
     <button
@@ -13,8 +18,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
+        width="28"
+        height="28"
         fill="currentColor"
         class="bi bi-person-circle"
         viewBox="0 0 16 16"
@@ -27,7 +32,7 @@
       </svg>
 
       <span
-        class="position-absolute translate-middle p-2 bg-danger border border-light rounded-circle fs-6"
+        class="position-absolute translate-middle notification-badge bg-danger border border-light rounded-circle"
         >1+
         <span class="visually-hidden">New alerts</span>
       </span>

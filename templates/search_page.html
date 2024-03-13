@@ -1,0 +1,114 @@
+{% extends "index.html" %} {% block content %}
+<section>
+  <div class="bg-color w-100">
+    <div class="container search-bar position-relative" data-mdb-input-init>
+      <input
+        type="search"
+        id="form1"
+        class="form-control"
+        placeholder="serach"
+        aria-label="Search"
+      />
+    </div>
+  </div>
+  <div class="container mt-3">
+    <h3>Suggested</h3>
+    <div
+      id="carouselExampleInterval"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <div class="d-flex">
+            {% for i in list %}
+
+            <div class="card w-50 m-2">
+              <div class="card-body">
+                <div class="d-flex">
+                  <h5 class="card-title flex-grow-1">Company Name</h5>
+                  <div class="text-danger">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-heart-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Button</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <div class="d-flex">
+            {% for i in list %}
+
+            <div class="card w-50 m-2">
+              <div class="card-body">
+                <div class="d-flex">
+                  <h5 class="card-title flex-grow-1">Company Name</h5>
+                  <div class="text-danger">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-heart-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Button</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleInterval"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleInterval"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+{% endblock %}

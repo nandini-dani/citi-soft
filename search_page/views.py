@@ -3,4 +3,7 @@ from django.shortcuts import render
 
 
 def searchPage(request):
-    return render(request, "index.html")
+    context = {
+        "list": [1, 2, 3],
+    }
+    return render(request, "search_page.html", context)
