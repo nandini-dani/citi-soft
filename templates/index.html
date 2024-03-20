@@ -13,8 +13,10 @@
     <title>Document</title>
   </head>
   <body>
-    <div>{%include 'header.html' %}</div>
-    <div>{% block content %} {% endblock %}</div>
-    <div class="fixed-bottom">{%include 'footer.html' %}</div>
+    <div class="main-container">
+      <div class="sticky-top">{%include 'header.html' %}</div>
+      {% block content %} {% endblock %}
+    </div>
+    <div class="">{%include 'footer.html' %}</div>
   </body>
 </html>
