@@ -8,6 +8,7 @@ body {
 }
 .main-container {
   min-height: calc(100vh - 150px);
+  overflow-x: hidden;
 }
 .btn-none:focus {
   box-shadow: none !important;
@@ -42,6 +43,31 @@ input[type="search"]::-webkit-search-results-decoration {
 .search-card {
   height: 200px;
   max-width: 415px;
+  .view-btn {
+    bottom: 2px;
+    position: absolute;
+    right: 2px;
+    color: cornflowerblue;
+    &:hover {
+      color: cornflowerblue;
+    }
+  }
+  &.arrow-box {
+    background: lightgrey;
+    width: 80px;
+    position: relative;
+    opacity: 0.4;
+  }
+  .arrow {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    font-size: 40px;
+    color: black;
+  }
+  &.search-card-width {
+    width: calc(100% / 3 - 20px);
+  }
 }
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -50,7 +76,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .carousel-control-next,
 .carousel-control-prev {
-  width: 5% !important;
+  width: 3% !important;
 }
 .rec-result,
 .search-result {
@@ -80,11 +106,27 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .like-btn {
   color: red;
-  font-size: 14px;
+  font-size: 16px;
   transition: color 12s, font-size 12s;
   -webkit-transition: color 2s, font-size 2s;
 }
 .like-btn:hover {
   color: blanchedalmond;
-  font-size: 20px;
+  font-size: 18px;
+}
+.bg-light-green {
+  background-color: darkseagreen;
+}
+/* user profile page */
+.profile {
+  &.offcanvas-end {
+    width: 300px;
+  }
+  .offcanvas-header {
+    display: block;
+  }
+}
+.user-profile .profile-card {
+  background-color: aliceblue;
+  border: none;
 }

@@ -5,8 +5,9 @@
       <img src="../images/logo.jpeg" width="30" height="24" />
     </a>
     {% endcomment %}
-    <a class="navbar-brand text-dark" href="#">Home</a> 
-    <a class="navbar-brand text-dark" href="#">Companies</a>
+    <a class="navbar-brand text-dark" href="{%url 'searchPage'%}">Home</a> 
+    <a class="navbar-brand text-dark" href="{% url 'register'%}">Register</a>
+    <a class="navbar-brand text-dark" href="{% url 'login'%}">Login</a>
 
     <button
       class="navbar-toggler navbar-brand text-dark position-relative btn-none"
@@ -38,29 +39,44 @@
       </span>
     </button>
     <div
-      class="offcanvas offcanvas-end text-bg-dark"
+      class="profile offcanvas offcanvas-end text-bg-dark"
       tabindex="-1"
       id="offcanvasDarkNavbar"
       aria-labelledby="offcanvasDarkNavbarLabel"
     >
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
-          Logged in as Nandini!
+          {% if request.user.username %}
+          <p
+            class="p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded-end"
+          >
+            Welcome, {{ request.user.username }}!
+          </p>
+          {% endif %}
         </h5>
-        <button
-          type="button"
-          class="btn-close btn-close-white"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
       </div>
-      <div class="offcanvas-body">
+      <div class="offcanvas-body pt-1">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Profile</a>
+            <a
+              class="nav-link text-info"
+              aria-current="page"
+              href="{% url 'userProfile' %}"
+              >Profile</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Activity</a>
+            <a class="nav-link text-info" href="#"
+              >Activity:
+              <small>
+                <span class="text-secondary fst-italic"
+                  >{{request.user.last_login}}</span
+                ></small
+              ></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-info" href="{% url 'logout'%}">Logout</a>
           </li>
         </ul>
       </div>

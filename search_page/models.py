@@ -10,6 +10,7 @@ class Company(models.Model):
     contact_number = models.CharField(max_length=15)
     last_updated = models.DateField(("Date"), auto_now_add=True)
     company_url = models.URLField(max_length=50)
+    company_email = models.EmailField(max_length=254, null=True)
 
 
 class Product(models.Model):

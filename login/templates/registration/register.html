@@ -1,0 +1,10 @@
+{% extends "index.html" %} {% block content %}
+<div class="container mt-3">
+  <div class="form-group">
+    <form method="post">
+      {% csrf_token %} {{form.as_p}}
+      <button class="btn btn-secondary">register</button>
+    </form>
+  </div>
+</div>
+{% endblock%}
