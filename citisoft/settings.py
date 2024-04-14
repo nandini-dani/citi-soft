@@ -17,7 +17,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+AUTH_USER_MODEL = 'user_registration.CustomUser'
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     "bootstrap5",
     "search_page.apps.SearchPageConfig",
     "login",
+    "user_login",
+    "user_registration"
 ]
 
 MIDDLEWARE = [
@@ -69,7 +71,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "CITI-SOFT",
         "USER": "postgres",
-        "PASSWORD": "1196",
+        "PASSWORD": "postgres",
         "HOST": "localhost",
     }
 }
