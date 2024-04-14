@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: space-between;
+}
+.container {
+    position: relative;
+    max-width: 300px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+.language-selector {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.language-selector select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 5px;
+    padding-right: 20px; /* Add right padding for the icon */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="#000" d="M5 0L0 5h10z"/></svg>'); /* Add the arrow SVG */
+    background-repeat: no-repeat;
+    background-position: right center; /* Position the icon */
+}
+.language-selector select {
+appearance: none;
+-webkit-appearance: none;
+background-color: #fff;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 10px;
+cursor: pointer;
+padding: 5px;
+padding-right: 30px; /* Adjust padding for the arrow */
+background-repeat: no-repeat;
+background-position: right center; /* Position the icon */
+outline: none; /* Remove outline */
+box-shadow: none; /* Remove box shadow */
+transition: border-color 0.3s ease; /* Add transition effect for border color */
+}
+
+.language-selector select:hover,
+.language-selector select:focus {
+border-color: #007bff; /* Change border color on hover and focus */
+}
+
+/* Arrow indicator */
+.language-selector::after {
+content: '';
+position: absolute;
+top: calc(50% - 2px); /* Center vertically */
+right: 10px; /* Adjust position */
+width: 0;
+height: 0;
+border-left: 4px solid transparent; /* Left side of the triangle */
+border-right: 4px solid transparent; /* Right side of the triangle */
+border-top: 4px solid #999; /* Bottom side of the triangle */
+}
+
+.language-selector select:hover,
+.language-selector select:focus {
+border-color: #000000; /* Change border color on hover and focus */
+}
+
+/*input[type="submit"]:hover {
+    background-color: #000000;
+}*/
+.login-link {
+    font-size: 11px; /* Adjust font size for smaller text */
+    text-align: center;
+    margin-top: -7px; /* Add margin top for spacing */
+    font-size: small;
+}
+.login-link a {
+    color: #23d8df;
+    text-decoration: none;
+    font-size: medium;
+}
+.image-container {
+    width: 48%;
+    background-image: url('design.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add drop shadow */
+}
+.citisoft-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 80px; /* Adjust width as needed */
+}

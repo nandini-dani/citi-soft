@@ -17,7 +17,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+AUTH_USER_MODEL = 'user_registration.CustomUser'
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "bootstrap5",
     "search_page.apps.SearchPageConfig",
+    "user_login",
+    "user_registration"
 ]
 
 MIDDLEWARE = [
@@ -68,7 +70,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "CITI-SOFT",
         "USER": "postgres",
-        "PASSWORD": "1196",
+        "PASSWORD": "postgres",
         "HOST": "localhost",
     }
 }
@@ -116,3 +118,17 @@ STATIC_ROOT = BASE_DIR / "assets"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {"class": "logging.StreamHandler"},
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+    }
+}

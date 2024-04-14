@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office"
+    xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <title>Register to Citisoft</title>
+
+</head>
+
+<body>
+    <!--<img src="Citisoft.png" alt="Citisoft Logo" class="citisoft-logo">-->
+    <div class="container" style="width:45%">
+        <h2>Welcome to Citisoft</h2>
+        {% if registrationSuccess == True %}
+        <div style="text-align: center;" class="alert alert-primary" role="alert">
+            Registration Success!
+        </div>
+        {% endif %}
+
+        {% if registrationSuccess == False %}
+        <div style="text-align: center;" class="alert alert-danger" role="alert">
+            Registration Failed, Please try again later!
+        </div>
+        {% endif %}
+        <form action="/user/register/" class="needs-validation" novalidate method="post">
+            <div class="form-group row py-sm-2 mb-0">
+
+                <div class="col-lg-12">
+
+                    <input type="text" class="form-control input-lg" id="name" name="name" placeholder="Name" required>
+                </div>
+            </div>
+
+            <div class="form-group row py-sm-2 mb-0">
+                <div class="col-lg-12">
+                    <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Email"
+                        required>
+                    <div class="valid-feedback">
+                        Email Id is Unique
+                    </div>
+                    <div class="invalid-feedback">
+                        Email id already exists
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row py-sm-2 mb-0">
+                <div class="col-lg-12">
+                    <input type="text" class="form-control input-lg" id="username" name="username"
+                        placeholder="Username" required>
+                    <div class="valid-feedback">
+                        Valid User Name
+                    </div>
+                    <div class="invalid-feedback">
+                        Invalid User Name
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row py-sm-2 mb-0">
+                <div class="col-lg-12">
+                    <input type="password" class="form-control input-lg" id="password" name="password"
+                        placeholder="Password" required>
+                </div>
+            </div>
+            <div class="form-group row py-sm-2 mb-0">
+                <div class="col-lg-12">
+                    <input type="password" class="form-control input-lg" id="reenterpassword" name="reenterpassword"
+                        placeholder="Re Enter Password" required>
+                    <div class="valid-feedback">
+                        Both the passwords are match
+                    </div>
+                    <div class="invalid-feedback">
+                        Both Password should be same
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row py-sm-2 mb-0">
+                <div class="col-lg-12">
+                    <input type="text" class="form-control input-lg" id="phone_number" name="phone_number"
+                        placeholder="Phone number" required>
+                </div>
+            </div>
+            <div class="form-group row py-sm-2 mb-0">
+                <div class="col-lg-12">
+                    <input type="email" class="form-control input-lg" id="recovery_email" name="recovery_email"
+                        placeholder="Recovery email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rememberMe">Remember me</label>
+                <input type="checkbox" id="rememberMe" name="rememberMe">
+            </div>
+            {% csrf_token %}
+            <div class="form-group row py-sm-2 mb-0">
+                <div class="col-lg-12">
+                    <input type="submit" class="btn btn-success btn-lg" value="Register">
+                </div>
+            </div>
+        </form>
+        <div class="login-link">
+            <span>Already have an account? <a style="color: #007bff;" href="/user/login">Log in</a></span>
+        </div>
+    </div>
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+
+</html>
