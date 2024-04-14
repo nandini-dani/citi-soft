@@ -1,0 +1,254 @@
+{% extends "index.html" %} {% block content %}
+<section>
+  <div class="bg-color w-100">
+    <form method="get">
+      <div class="container search-bar position-relative" data-mdb-input-init>
+        <input
+          type="search"
+          class="form-control"
+          placeholder="search company & product"
+          aria-label="Search"
+          name="searchQuery"
+        />
+        <button type="submit" class="search-btn btn-none">
+          <i class="fa fa-search text-secondary" aria-hidden="true"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="container mt-3 rec-result">
+    <div class="fs-5 px-2 fw-normal text-secondary">Suggested:</div>
+    <div id="carouselRecResult" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <div class="d-flex">
+            {% for company in firstRecCompanies %}
+            <div class="card m-2 search-card search-card-width">
+              <div class="card-body">
+                <div class="d-flex">
+                  <h5 class="card-title flex-grow-1 text-truncate">
+                    {{company.name}}
+                  </h5>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <button
+                      class="btn-none"
+                      name="companyId"
+                      type="submit"
+                      value="{{company.id}}"
+                    >
+                      <span>
+                        {% if company in userProfile.liked_companies.all%}
+                        <i class="fa fa-heart like-btn" aria-hidden="true"></i>
+                        {%else%}
+                        <i
+                          class="fa fa-heart-o text-secondary"
+                          aria-hidden="true"
+                        ></i>
+                        {%endif%}
+                      </span>
+                    </button>
+                  </form>
+                </div>
+                <p class="card-text des-wrap">{{company.description}}</p>
+                <div class="d-flex">
+                  {% for product in company.product_set.all %}
+                  <div class="badge rounded-pill bg-light-green me-1">
+                    {{product.name}}
+                  </div>
+                  {% endfor %}
+                </div>
+                <a
+                  href="{% url 'company-detail' company.pk %}"
+                  class="btn view-btn"
+                  >view all<i
+                    class="fa fa-arrow-right ps-1"
+                    aria-hidden="true"
+                  ></i
+                ></a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="10000">
+          <div class="d-flex">
+            {% for company in secondRecCompanies %}
+            <div class="card m-2 search-card search-card-width">
+              <div class="card-body">
+                <div class="d-flex">
+                  <h5 class="card-title flex-grow-1 text-truncate">
+                    {{company.name}}
+                  </h5>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <button
+                      class="btn-none"
+                      name="companyId"
+                      type="submit"
+                      value="{{company.id}}"
+                    >
+                      <span>
+                        {% if company in userProfile.liked_companies.all%}
+                        <i class="fa fa-heart like-btn" aria-hidden="true"></i>
+                        {%else%}
+                        <i
+                          class="fa fa-heart-o text-secondary"
+                          aria-hidden="true"
+                        ></i>
+                        {%endif%}
+                      </span>
+                    </button>
+                  </form>
+                </div>
+                <p class="card-text des-wrap">{{company.description}}</p>
+                <div class="d-flex">
+                  {% for product in company.product_set.all %}
+                  <div class="badge rounded-pill bg-light-green me-1">
+                    {{product.name}}
+                  </div>
+                  {% endfor %}
+                </div>
+                <a
+                  href="{% url 'company-detail' company.pk %}"
+                  class="btn view-btn"
+                  >view all<i
+                    class="fa fa-arrow-right ps-1"
+                    aria-hidden="true"
+                  ></i
+                ></a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselRecResult"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselRecResult"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- Result block -->
+  {% if resultCompanies != None %}
+  <div class="container mt-3 search-result">
+    {% if resultCompaniesLength != 0 %}
+    <form method="get">
+      <div class="d-flex">
+        <h3 class="fs-5 px-2 fw-normal text-secondary flex-grow-1">
+          Search Results:
+        </h3>
+        <i class="fa fa-filter text-primary me-1 fs-3" aria-hidden="true"></i
+        ><i
+          class="fa fa-ellipsis-v text-primary me-3 fs-4 pt-1"
+          aria-hidden="true"
+        ></i>
+        <div class="me-4">
+          {% for category in filterCloudCategory%}
+          <div class="form-check">
+            {% if category.checked %}
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{category.categoryId}}"
+              name="category"
+              checked
+            />
+            {%else%}
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{category.categoryId}}"
+              name="category"
+            />
+            {% endif %}
+            <label class="form-check-label"> {{category.categoryName}} </label>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+      <div class="d-flex justify-content-end fs-6 text-success me-4">
+        <button type="submit" class="btn-none">
+          Apply filter
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+        </button>
+      </div>
+    </form>
+    {%endif%}
+    <div>
+      <div class="d-flex flex-wrap">
+        {% for company in resultCompanies %}
+        <div class="card m-2 search-card search-card-width">
+          <div class="card-body">
+            <div class="d-flex">
+              <h5 class="card-title flex-grow-1 text-truncate">
+                {{company.name}}
+              </h5>
+              <form method="POST">
+                {% csrf_token %}
+                <button
+                  class="btn-none"
+                  name="companyId"
+                  type="submit"
+                  value="{{company.id}}"
+                >
+                  <span>
+                    {% if company in userProfile.liked_companies.all%}
+                    <i class="fa fa-heart like-btn" aria-hidden="true"></i>
+                    {%else%}
+                    <i
+                      class="fa fa-heart-o text-secondary"
+                      aria-hidden="true"
+                    ></i>
+                    {%endif%}
+                  </span>
+                </button>
+              </form>
+            </div>
+            <p class="card-text des-wrap">{{company.description}}</p>
+            <div class="d-flex">
+              {% for product in company.product_set.all %}
+              <div class="badge rounded-pill bg-light-green me-1">
+                {{product.name}}
+              </div>
+              {% endfor %}
+            </div>
+            <a href="{% url 'company-detail' company.pk %}" class="btn view-btn"
+              >view all<i class="fa fa-arrow-right ps-1" aria-hidden="true"></i
+            ></a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div>
+    {% if resultCompaniesLength == 0 %}
+    <div class="container my-5">
+      <div class="card text-center mx-2 me-3">
+        <div class="card-header">Search results</div>
+        <div class="card-body">
+          <h5 class="card-title">Sorry no results found!</h5>
+          <p class="card-text">You can check our suggested section</p>
+        </div>
+      </div>
+    </div>
+    {% endif%}
+  </div>
+  {% endif%}
+</section>
+{% endblock %}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sample.css">
+    <title> Login to Citisoft</title>
+    <!--<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: space-between;
+        }
+        .container {
+            position: relative;
+            max-width: 300px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        .language-selector {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+        .language-selector select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: transparent;
+            border: none;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 5px;
+            padding-right: 20px; /* Add right padding for the icon */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="#000" d="M5 0L0 5h10z"/></svg>'); /* Add the arrow SVG */
+            background-repeat: no-repeat;
+            background-position: right center; /* Position the icon */
+        }
+        .language-selector select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+    padding: 5px;
+    padding-right: 30px; /* Adjust padding for the arrow */
+    background-repeat: no-repeat;
+    background-position: right center; /* Position the icon */
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box shadow */
+    transition: border-color 0.3s ease; /* Add transition effect for border color */
+}
+
+.language-selector select:hover,
+.language-selector select:focus {
+    border-color: #007bff; /* Change border color on hover and focus */
+}
+
+/* Arrow indicator */
+.language-selector::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 2px); /* Center vertically */
+    right: 10px; /* Adjust position */
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent; /* Left side of the triangle */
+    border-right: 4px solid transparent; /* Right side of the triangle */
+    border-top: 4px solid #999; /* Bottom side of the triangle */
+}
+
+}
+
+.language-selector select:hover,
+.language-selector select:focus {
+    border-color: #000000; /* Change border color on hover and focus */
+}
+        form {
+            margin-top: 30px;
+        }
+        input, label {
+            font-size: 12px;
+        }
+        input[type="text"],input[type="name"], input[type="email"], input[type="password"], input[type="Phone number"], input[type="Recovery email"],   input[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            text-indent: 10px;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #8ae7f3;
+            color: #000000; 
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #000000;
+        }
+        .login-link {
+            font-size: 11px; /* Adjust font size for smaller text */
+            text-align: center;
+            margin-top: -7px; /* Add margin top for spacing */
+        }
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .image-container {
+            width: 48%;
+            background-image: url('design.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add drop shadow */
+        }
+        .citisoft-logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 80px; /* Adjust width as needed */
+        }
+    </style> -->
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers msdt:dt="string">CL - Advanced Web Solutions (2023 MOD004364 TRI2 F01CAM) Members</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers>
+<mso:SharedWithUsers msdt:dt="string">14;#CL - Advanced Web Solutions (2023 MOD004364 TRI2 F01CAM) Members</mso:SharedWithUsers>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+    <!--<img src="Citisoft.png" alt="Citisoft Logo" class="citisoft-logo">-->
+    <div style="padding: 100px;" class="container">
+        <h2>Welcome to Citisoft</h2>
+        <div class="language-selector">
+            <select>
+                <option value="en">EN</option>
+                <option value="eu">EU</option>
+                <option value="fr">FR</option>
+            </select>
+        </div>
+        <form action="#" method="post">
+            <input style="font-size: large;" type="text" id="username" name="username" placeholder="Username" required>
+            <input style="font-size: large;" type="password" id="password" name="password" placeholder="Password" required>
+            <br>
+            <input style="font-size: large;" type="submit" value="Login">
+        </form>
+        <div class="login-link">
+            <span>Already have an account? <a style="color: #007bff;" href="file:///C:/Users/DELL/Desktop/sample.html#">Register</a></span>
+        </div>
+    </div>
+
+</body>
+</html>
