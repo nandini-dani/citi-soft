@@ -27,8 +27,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "bootstrap5",
     "search_page.apps.SearchPageConfig",
+<<<<<<< HEAD
     "user_login",
     "user_registration"
+=======
+    "login",
+>>>>>>> 88dce88517020dd6c260dcdc4e9173483d21a9ca
 ]
 
 MIDDLEWARE = [
@@ -46,7 +50,7 @@ ROOT_URLCONF = "citisoft.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "templates", BASE_DIR / "login/templates/registration"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -119,16 +123,13 @@ STATIC_ROOT = BASE_DIR / "assets"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {"class": "logging.StreamHandler"},
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": "INFO",
-        },
-    }
-}
+LOGIN_REDIRECT_URL = "searchPage"
+LOGOUT_REDIRECT_URL = "login"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = "nancodeo@gmail.com"  # Your Gmail email address
+EMAIL_HOST_PASSWORD = "kbthdwionvwsjkmj"  # Your Gmail password or app password
