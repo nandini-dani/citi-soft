@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth import login
 
 import logging
 User = get_user_model()
@@ -15,8 +16,9 @@ def user_login(request):
             user = User.objects.get(username=username)
             #  Check the password is the reverse of the username
             if check_password(password, user.password):
-                # Yes? return the Django user object
-                context = {'loginSuccess': True, 'errorMessage': '', user: user}
+                login(request, user)
+                context = {'loginSuccess': True, 'errorMessage': ''}
+                request.session['username'] = user.name
                 return render(request, "search_page.html", context)
             else:
                 # No? return None - triggers default login failed
@@ -51,3 +53,7 @@ def user_registration(request, **extra_fields):
         return render(request, "registration.html", context=context)
     else:
         return render(request, "registration.html")
+    
+def user_email_validation(request):
+    if request.method == 'POST':
+        email = request.POST.get("email", "")

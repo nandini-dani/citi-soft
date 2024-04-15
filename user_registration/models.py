@@ -12,6 +12,7 @@ class CustomUser(AbstractUser):
     is_active = models.BooleanField(default=True)
     registration_date = models.DateTimeField(auto_now_add=True, 
                                              editable=False)
+    is_vendor = models.BooleanField(default=False)
     
     class Meta:
         ordering = ['registration_date']
