@@ -1,0 +1,70 @@
+
+.box{
+    background-color: blue;
+    border: 1px solid green;
+    min-height: 50px;
+}
+
+.company {
+    align-items: center;
+    min-height: 60px;
+}
+
+.company-name{
+    font-size: 40px;
+    color: #2B3674;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+
+.company-logo{
+    width: 68px;
+    height: 68px;
+    align-content: center;
+}
+
+.website-button{
+    width: auto;
+    height: 35px;
+    font-size: 3px;
+
+}
+
+.website-button-div{ 
+    top: 50%;
+    
+}
+
+.location-name{
+    font-size: 18px;
+}
+
+.details{
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+
+.row-1{
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-us-description{
+    font-size: large;
+    line-height: 4ch;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.location-card{
+    background-color: #E9EDF7;
+}
+
+.product-card{
+    min-width: 100px;
+}

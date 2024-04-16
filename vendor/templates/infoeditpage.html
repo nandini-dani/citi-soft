@@ -1,0 +1,408 @@
+{% extends "index.html" %} {% load static %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Info edit Page</title>
+    <link rel="stylesheet" href="{%static 'css/vendoreditpage.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <!-- {% if submitted %}
+      your data is stored successfully
+
+    {% endif %} -->
+    <div style="border: 3px solid black;">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="container-fluid">
+          <div class="row">
+            <div class="justify-content-center align-items-center">
+              <div class="form-group mb-3">
+                <!-- <label for="companytitle" style="font-weight: bold"
+                  >Company Title</label
+                >
+                <input
+                  type="companytitle"
+                  class="form-control"
+                  id="companytitle"
+                  name="companytitle"
+                  aria-describedby="ctitle"
+                  placeholder="Enter Company name"
+                  value="{{company.name}}"
+                /> -->
+                {{form.as_p}}
+              </div>
+              <!-- <div class="form-group mb-3">
+                <label for="basic-url" style="font-weight: bold"
+                  >Company URL</label
+                >
+                <div class="input-group mb-3">
+                  
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3"
+                      >https://</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="basicurl"
+                    name="basicurl"
+                    aria-describedby="basic-addon3"
+                    value="{{company.company_url}}"
+                  />
+                </div>
+              </div> -->
+              <!-- <label for="basic-url" style="font-weight: bold"
+              >Company Logo</label
+            > -->
+              <!-- <div class="wrapper">
+                <div class="container-fluid">
+                  <div class="upload-container">
+                    <div class="border-container">
+                      <div class="icons fa-4x">
+                        <i class="fa fa-download fa-download"></i>
+                      </div>
+                      <input type="file" id="file-upload">
+                      <p>
+                        Drag and drop files here, or
+                        <a href="#" id="file-browser">browse</a> your computer.
+                      </p>
+                      <input type="file" id="companylogoimage" name="companylogoimage">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <div class="container">
+                  <label for="employeecount" style="font-weight: bold;">Employee Count</label>
+                  <div class="d-flex align-items-center justify-content">
+                      <div class=" d-flex">
+                          <input type="number" class="form-control" name="employeecount" id="employeecount" >
+                      </div>
+                      
+                  </div> -->
+                  
+              </div>
+              <!-- <div class="form-group mb-3">
+                <label for="employeecount" style="font-weight: bold;">Employee Count</label>
+                  <div class="d-flex align-items-center justify-content">
+                      <div class=" d-flex">
+                          <input type="number" class="form-control" name="employeecount" id="employeecount" >
+                      </div>
+              </div> -->
+              
+            </div>
+            <!-- <div class="col-7 col-md-7 col-sm-12 my-2 mt-3 justify-content-center align-items-center">
+            <div class="form-group mb-1">
+              <label for="inputcompanydescription" style="font-weight: bold"
+                >Company Description</label
+              >
+              <input
+                type="companydescription"
+                class="form-control companydesc text-wrap"
+                id="companydescription"
+                name="companydescription"
+                aria-describedby="cdescription"
+                placeholder="Company description goes here"
+                value="{{company.description}}"
+              /></div>
+          </div> -->
+        
+          </div>
+          <div class="mb-5 container-fluid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <!-- <input type="submit" value="submit" class="btn btn-primary"> -->
+  
+      </form>
+    </div>
+
+
+    <div class="container-fluid m-3">
+        <h3 class="subheadings">Edit Products</h3>
+        <div class="d-flex">
+          <div class="d-flex justify-content-left align-items-center">
+              <ul class="list-inline">
+                {%for product in products %}
+                <li class="list-inline-item">
+                  <button class="btn btn-info" >
+                    {{product.software_type}} 
+                    <!-- <button class="btn btn-danger">Delete</button> -->
+                    <a href="/vendor/deleteProduct/{{product.id}}">
+                      <span class="btn btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true" id="{{product.id}}"></i>
+                      </span>
+                    </a>
+                    
+                    <a href="/vendor/productEdit/{{product.id}}/">
+                      <span class="btn btn-warning">
+                        <i class="fa fa-edit" aria-hidden="true" id="{{product.id}}"></i>
+                      </span>
+                    </a>
+
+                    
+                  </button>
+                  
+                </li>
+                {% endfor %}
+                <li class="list-inline-item">
+                  <a href="/vendor/productAdd/{{company.id}}/" class="btn btn-primary">Add a new Product</a>
+                </li>
+              </ul>
+            </div>
+            <!-- <div class="card product-card" style="background-color: #E9EDF7;">
+                <div class="card-body">
+                  Wealth Management
+                  &nbsp;<i class="fa fa-edit float-right" data-toggle="modal" data-target="#exampleModalCenter"></i>
+
+
+                </div>
+            </div>
+            <div class="card product-card" style="background-color: #E9EDF7;">
+                <div class="card-body">
+                  Project Management
+                  &nbsp;<i class="fa fa-edit float-right" data-toggle="modal" data-target="#exampleModalCenter"></i>
+                </div>
+            </div>
+            <div class="card product-card " style="background-color: #E9EDF7;">
+                <div class="card-body">
+                  Software Services
+                  &nbsp;<i class="fa fa-edit float-right" data-toggle="modal" data-target="#exampleModalCenter"></i>
+                </div>
+            </div> -->
+
+   
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <form>
+                          <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                              <label class="text-nowrap" for="productName">Product Name</label>&nbsp;&nbsp;
+                              <input type="text" class="form-control" id="productInput" placeholder="Enter Product">
+                          </div>
+                          <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                              <label class="text-nowrap " for="websiteURL">Website URL</label>&nbsp;&nbsp;
+                              <input type="text" class="form-control" id="websiteURL" placeholder="Enter Wesite URL">
+                          </div>
+                          <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                              <label class="text-nowrap " for="businessAreas">Business Areas</label>&nbsp;&nbsp;
+                              <input type="text" class="form-control" id="businessAreas" placeholder="Enter Business Areas">
+                          </div>
+                          <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                              <label class="text-nowrap " for="modules">Modules</label>&nbsp;&nbsp;
+                              <input type="text" class="form-control" id="businessAreas" placeholder="Enter Modules">
+                          </div>
+                          <div class="form-group d-flex align-items-center justify-content-left pt-2">
+                              <label class="text-nowrap " for="productName">Product Name</label>&nbsp;&nbsp;
+                              <!-- <ul  style="list-style-type: none;">
+                                  <li class="dropdown" role="presentation">
+                                      <button href="#" class="dropdown-toggle btn btn-outline-secondary" id="productDropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Option 1 <span class="caret"></span> </button>
+                                      <ul class="dropdown-menu" id="menu1" aria-labelledby="productDropdown">
+                                          <li><a href="#">Action</a></li>
+                                          <li><a href="#">Another action</a></li>
+                                          <li><a href="#">Something else here</a></li>
+                                      </ul>
+                                  </li>
+                              </ul> -->
+                              <select name="productnames" id="productnames" class="form-control">
+                                <option value="product1">Product 1</option>
+                                <option value="product2">Product 2</option>
+                                <option value="product3">Product 3</option>
+                                <option value="product4">Product 4</option>
+                              </select>
+                              
+                          </div>
+                          <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                              <label class="text-nowrap " for="client_types">Client types</label>&nbsp;&nbsp;
+                              <input type="text" class="form-control" id="businessAreas" placeholder="Enter Client types">
+                          </div>
+
+                          <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                              <label for="docAttachment">Document attachment</label>&nbsp;&nbsp;
+                              <div class="wrapper">
+                                  <div class="container-fluid">
+                                    <div class="upload-container">
+                                      <div class="border-container">
+                                        <!-- <div class="icons fa-4x">
+                                          <i class="fa fa-download fa-download"></i>
+                                        </div> -->
+                                        <!--<input type="file" id="file-upload">-->
+                                        <!-- <p>
+                                          Drag and drop files here, or
+                                          <a href="#" id="file-browser">browse</a> your computer.
+                                        </p> -->
+                                        <input type="file" id="docattachment" name="docattachment">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                          </div>
+
+                          <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                              <label class="text-nowrap " for="description">Description</label>&nbsp;&nbsp;
+                              <input type="text" class="form-control companydesc" id="businessAreas" placeholder="Enter description">
+                          </div>
+                      </form>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            
+
+
+        </div>
+
+    </div>
+
+
+
+    <div class="container-fluid m-3">
+        <h3 class="subheadings">Edit Locations</h3>
+
+        <div class="row px-3">
+          
+            <div class="row">
+              
+                {% for location in locations %}
+                <div class="card col-lg-3 col-md-3 col-sm-12 m-2" style="background-color: #407c94;">
+                    
+                    <div class="card-body" style="color: black;">
+                    <h5 class="card-title" >{{location.city}} &nbsp;
+                      <!-- <i class="fa fa-edit float-right" data-toggle="modal" data-target="#addressEditModal"></i> -->
+                      <a href="/vendor/deleteLocation/{{location.id}}">
+                        <span class="btn btn-danger">
+                          <i class="fa fa-trash" aria-hidden="true" id="{{location.id}}"></i>
+                        </span>
+                      </a>
+                      
+                      <a href="/vendor/locationEdit/{{location.id}}/">
+                        <span class="btn btn-warning">
+                          <i class="fa fa-edit" aria-hidden="true" id="{{location.id}}"></i>
+                        </span>
+                      </a>
+                    </h5>
+                    <p class="card-text" style="font-weight: bold;">
+                      {{location.address}}
+                    </p>
+                    <p class="card-text" style="font-weight: bold;">
+                      {{location.country}}
+                    </p>
+                    <p class="card-text" style="font-weight: bold;">
+                      {{location.contact_number}}
+                    </p>
+                  </div>
+                  
+                </div>
+                
+                
+
+              <div class="modal fade" id="addressEditModal" tabindex="-1" role="dialog" aria-labelledby="addressEdit" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Edit</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="post" action="">
+                      <!-- /vendor/editCompanyInfo/{{location.company_id}}/ -->
+                      {% csrf_token %}
+                      
+                      <div class="modal-body">
+                              <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                                  <!-- <label class="text-nowrap" for="address1">Address</label>&nbsp;&nbsp;
+                                  <input type="text" class="form-control" id="address1Input" placeholder="House No., Flat No." value="{{location.address}}"> -->
+                                  <!-- {{locationform.as_p}} -->
+                                </div>
+                                
+                              <!-- <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                                  <label class="text-nowrap " for="city">City/Town</label>&nbsp;&nbsp;
+                                  <input type="text" class="form-control" id="city" placeholder="City">
+                              </div>
+                              <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                                <label class="text-nowrap " for="Country">Country</label>&nbsp;&nbsp;
+                                <input type="text" class="form-control" id="countryInput" placeholder="Country">
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-around pt-2">
+                              <label class="text-nowrap " for="phoneNumber">Contact Number</label>&nbsp;&nbsp;
+                              <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                          </div> -->
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              <div>
+                <!-- <button type="button" class="btn btn-primary" id="addbtn" data-toggle="modal" data-target="#addressEditModal">
+                  Add
+              </button> -->
+              <a href="/vendor/addressAdd/{{company.id}}/" type="button" class="btn btn-primary">Add a new address</a>
+            </div>
+            
+  
+              </div>
+           
+          </div>
+  
+        </div>
+
+
+      <!-- <script>
+        $('#addbtn').on('shown.bs.modal', function () {
+            $('#exampleModalCenter').trigger('focus')
+          });
+
+      </script>  -->
+  </body>
+  
+</html>
+{% endblock %}
+
+<!-- <div class="form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="exampleCheck1"
+    />
+    <label class="form-check-label" for="exampleCheck1"
+      >Check me out</label
+    >
+  </div> -->
