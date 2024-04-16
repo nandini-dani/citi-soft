@@ -26,7 +26,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "bootstrap5",
+    "django_forms_bootstrap",
     "search_page.apps.SearchPageConfig",
+    "vendor.apps.VendorConfig",
 ]
 
 MIDDLEWARE = [
@@ -68,7 +70,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "CITI-SOFT",
         "USER": "postgres",
-        "PASSWORD": "1196",
+        "PASSWORD": "postgres",
         "HOST": "localhost",
     }
 }
@@ -116,3 +118,7 @@ STATIC_ROOT = BASE_DIR / "assets"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
