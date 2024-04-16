@@ -1,0 +1,134 @@
+{% extends "index.html" %} {% block content %} {% load static %}
+<div class="container user-profile my-5">
+  <div class="card mb-3 profile-card" style="max-width: 540px">
+    <div class="row g-0">
+      {% for user in userData %}
+      <div class="col-md-4">
+        {% if user.userImage %}
+        <img
+          src="{{user.userImage.url}}"
+          class="img-fluid rounded-start logo profile-image"
+          alt="..."
+        />
+        {%else%}
+        <img
+          src="{% static '/images/default_image.jpeg' %}"
+          class="img-fluid rounded-start logo profile-image"
+          alt="..."
+        />
+        {%endif%}
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <div class="d-flex">
+            <h5 class="card-title flex-grow-1">
+              {{user.f_name}} {{user.l_name}}
+            </h5>
+            <a href="{% url 'editUserProfile' user.pk%}">
+              <i class="fa fa-pencil text-secondary" aria-hidden="true"></i
+            ></a>
+          </div>
+          <p class="card-text">{{user.date_of_birth}}</p>
+          <p class="card-text">{{user.contact_number}}</p>
+          <p class="card-text">{{user.email}}</p>
+          <p class="card-text">{{user.address}}</p>
+          <p class="card-text">
+            <small class="text-body-secondary"
+              >Active since {{request.user.date_joined}}</small
+            >
+          </p>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+  {%if likedCompany != 0 %}
+  <div class="py-4">
+    <h3 class="fs-5 px-2 fw-normal text-secondary flex-grow-1">
+      Liked Companies:
+    </h3>
+    <div class="d-flex flex-wrap">
+      {% for company in companies %}
+      <div class="card m-2 search-card search-card-width">
+        <div class="card-body">
+          <div class="d-flex">
+            <h5 class="card-title flex-grow-1 text-truncate">
+              {{company.name}}
+            </h5>
+            <form method="POST">
+              {% csrf_token %}
+              <button
+                class="text-warning btn-none pe-3"
+                name="notify"
+                value="{{company.id}}"
+                type="submit"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                <i class="fa fa-bell" aria-hidden="true"></i>
+              </button>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Mail sent!
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form method="POST">
+              {% csrf_token %}
+              <button
+                class="btn-none"
+                name="companyId"
+                type="submit"
+                value="{{company.id}}"
+              >
+                <span>
+                  {% if company in userProfile.liked_companies.all%}
+                  <i class="fa fa-heart like-btn" aria-hidden="true"></i>
+                  {%else%}
+                  <i
+                    class="fa fa-heart-o text-secondary"
+                    aria-hidden="true"
+                  ></i>
+                  {%endif%}
+                </span>
+              </button>
+            </form>
+          </div>
+          <p class="card-text des-wrap">{{company.description}}</p>
+          <div class="d-flex">
+            {% for product in company.product_set.all %}
+            <div class="badge rounded-pill bg-light-green me-1">
+              {{product.name}}
+            </div>
+            {% endfor %}
+          </div>
+          <a href="{% url 'company-detail' company.pk %}" class="btn view-btn"
+            >view all<i class="fa fa-arrow-right ps-1" aria-hidden="true"></i
+          ></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {%endif%}
+</div>
+{%endblock%}
