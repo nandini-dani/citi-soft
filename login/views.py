@@ -9,12 +9,19 @@ from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from citisoft.settings import EMAIL_HOST_USER
 from django.http import HttpResponse
+from .forms import EditForm
 
 
 class UserLoginView(generic.CreateView):
     form_class = UserCreationForm
     template_name = "register.html"
     success_url = reverse_lazy("login")
+
+
+class EditProfileView(generic.UpdateView):
+    model = UserProfile
+    form_class = EditForm
+    template_name = "editUserProfile.html"
 
 
 def userProfile(request):
