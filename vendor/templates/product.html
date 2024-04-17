@@ -35,8 +35,9 @@
     />
   </head>
   <body>
+    {% comment %} <p>{{company.id}}</p> {% endcomment %}
     <div class="container productcontainer">
-      <form enctype="multipart/form-data" method="post">
+      <form enctype="multipart/form-data" method="post" action="">
         {% csrf_token %}
         <div class="form align-items-center justify-content-around pt-2">
           {{productAddForm.as_p}}

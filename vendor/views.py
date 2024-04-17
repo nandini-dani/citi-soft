@@ -95,6 +95,7 @@ def editCompanyInfo(request, id):
 
 
 def productadd(request, id):
+    print("inside product add")
     company = Company.objects.get(id=id)
     if request.method == "POST":
         print("inside post method")
@@ -152,17 +153,35 @@ def addressadd(request, id):
 
 
 def productEdit(request, id):
-    # company = Company.objects.get(id=id)
-    # products = Product.objects.filter(company_id=id)
+    company = Company.objects.get(id=1)
     product = Product.objects.filter(id=id).values()
+    newproduct = Product.objects.get(id=id)
 
-    print("product is ", product[0])
+    print("product is ", product)
     productAddForm = UpdateProductForm(initial=product[0])
+
+    if request.method == "POST":
+
+        print("inside product edit post")
+        productAddForm = UpdateProductForm(request.POST, request.FILES)
+        if productAddForm.is_valid():
+            print("is valid productadd form KP")
+            newproduct.name = productAddForm.cleaned_data["name"]
+            newproduct.software_type = productAddForm.cleaned_data["software_type"]
+            newproduct.description = productAddForm.cleaned_data["description"]
+            newproduct.product_url = productAddForm.cleaned_data["product_url"]
+            newproduct.product_doc = productAddForm.cleaned_data["product_doc"]
+            newproduct.business_areas = productAddForm.cleaned_data["business_areas"]
+            newproduct.product_type = productAddForm.cleaned_data["product_type"]
+            newproduct.save()
+            url = f"/vendor/editCompanyInfo/{company.id}/"
+            print(url)
+            return redirect(url)
 
     return render(
         request,
         "product.html",
-        {"productAddForm": productAddForm, "product": product[0]},
+        {"productAddForm": productAddForm, "product": product[0], "company": company},
     )
     # url = f"/vendor/editCompanyInfo/{id}/"
     # print(url)
